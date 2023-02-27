@@ -1,26 +1,23 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
-version: 2.1
+  version: 2.1
+  jobs:
+    eb-demo:
+      docker:
+        - image: "cimg/base:stable"
+      steps:
+        - run: docker build -t adelelfar256/react-test -f ./client
+        - run: docker run -e CI=true adelelfar256/react-test npm test
+        - run: docker build -t adelelfar256/multi-client ./client
+        - run: docker build -t adelelfar256/multi-nginx ./nginx
+        - run: docker build -t adelelfar256/multi-server ./server
+        - run: docker build -t adelelfar256/multi-worker ./worker
+        - run: |
+            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+        - run: docker push adelessam256/multi-client
+        - run: docker push adelessam256/multi-nginx
+        - run: docker push adelessam256/multi-server
+        - run: docker push adelessam256/multi-worker
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  elastic-beanstalk-workflow:
     jobs:
-      - say-hello
+      - eb-demo
