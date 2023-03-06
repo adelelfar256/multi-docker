@@ -2,8 +2,12 @@
   jobs:
     eb-demo:
       docker:
-        - image: "cimg/base:stable"
+        - image: "cimg/base:2021.04"
+        auth:
+          username: DOCKER_ID
+          password: $DOCKER_PASSWORD
       steps:
+        - checkout
         - run: docker build -t adelelfar256/react-test -f ./client/Dockerfile.dev ./client
         - run: docker run -e CI=true adelelfar256/react-test npm test
         - run: docker build -t adelelfar256/multi-client ./client
