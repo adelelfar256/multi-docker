@@ -4,12 +4,12 @@
       docker:
         - image: "cimg/base:stable"
       steps:
-        - run: docker build -f ./client/Dockerfile -t adelelfar256/react-test ../../
+        - run: docker build -t adelelfar256/react-test -f ./client ../
         - run: docker run -e CI=true adelelfar256/react-test npm test
-        - run: docker build -t adelelfar256/multi-client ../client
-        - run: docker build -t adelelfar256/multi-nginx ../nginx
-        - run: docker build -t adelelfar256/multi-server ../server
-        - run: docker build -t adelelfar256/multi-worker ../worker
+        - run: docker build -t adelelfar256/multi-client ./client
+        - run: docker build -t adelelfar256/multi-nginx ./nginx
+        - run: docker build -t adelelfar256/multi-server ./server
+        - run: docker build -t adelelfar256/multi-worker ./worker
         - run: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
         - run: docker push adelessam256/multi-client
