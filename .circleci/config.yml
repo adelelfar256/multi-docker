@@ -7,8 +7,8 @@
         - checkout
         - setup_remote_docker
         - run:
-          name: Does docker even exist
-          command: docker -v
+            name: Does docker even exist
+            command: docker -v
         - run: docker build -t adelelfar256/react-test -f ./client/Dockerfile.dev ./client
         - run: docker run -e CI=true adelelfar256/react-test npm test
         - run: docker build -t adelelfar256/multi-client ./client
