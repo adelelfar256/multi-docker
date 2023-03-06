@@ -9,18 +9,18 @@
         - run:
             name: Does docker even exist
             command: docker -v
-        - run: docker build -t adelelfar256/react-test -f ./client/Dockerfile.dev ./client
-        - run: docker run -e CI=true adelelfar256/react-test npm test
-        - run: docker build -t adelelfar256/multi-client ./client
-        - run: docker build -t adelelfar256/multi-nginx ./nginx
-        - run: docker build -t adelelfar256/multi-server ./server
-        - run: docker build -t adelelfar256/multi-worker ./worker
+        - run: docker build -t adelelfar/react-test -f ./client/Dockerfile.dev ./client
+        - run: docker run -e CI=true adelelfar/react-test npm test
+        - run: docker build -t adelelfar/multi-client ./client
+        - run: docker build -t adelelfar/multi-nginx ./nginx
+        - run: docker build -t adelelfar/multi-server ./server
+        - run: docker build -t adelelfar/multi-worker ./worker
         - run: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-        - run: docker push adelessam256/multi-client:latest
-        - run: docker push adelessam256/multi-nginx:latest
-        - run: docker push adelessam256/multi-server:latest
-        - run: docker push adelessam256/multi-worker:latest
+        - run: docker push adelelfar/multi-client
+        - run: docker push adelelfar/multi-nginx
+        - run: docker push adelelfar/multi-server
+        - run: docker push adelelfar/multi-worker
         
 
   workflows:
