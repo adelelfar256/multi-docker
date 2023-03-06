@@ -4,7 +4,7 @@
       docker:
         - image: "cimg/base:stable"
       steps:
-        - run: docker build -t adelelfar256/react-test -f ./client ../
+        - run: docker build -t adelelfar256/react-test -f ./client/Dockerfile.dev ./client
         - run: docker run -e CI=true adelelfar256/react-test npm test
         - run: docker build -t adelelfar256/multi-client ./client
         - run: docker build -t adelelfar256/multi-nginx ./nginx
