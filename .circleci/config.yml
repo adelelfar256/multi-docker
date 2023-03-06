@@ -18,7 +18,7 @@
         - run: docker push adelessam256/multi-worker
         
 
-workflows:
-  elastic-beanstalk-workflow:
-    jobs:
-      - eb-demo
+  workflows:
+    elastic-beanstalk-workflow:
+      jobs:
+        - eb-demo
