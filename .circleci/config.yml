@@ -17,10 +17,10 @@
         - run: docker build -t adelelfar256/multi-worker ./worker
         - run: |
             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-        - run: docker push adelessam256/multi-client
-        - run: docker push adelessam256/multi-nginx
-        - run: docker push adelessam256/multi-server
-        - run: docker push adelessam256/multi-worker
+        - run: docker push adelessam256/multi-client:latest
+        - run: docker push adelessam256/multi-nginx:latest
+        - run: docker push adelessam256/multi-server:latest
+        - run: docker push adelessam256/multi-worker:latest
         
 
   workflows:
