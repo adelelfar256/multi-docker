@@ -4,6 +4,8 @@
       docker:
         - image: "cimg/base:stable"
       steps:
+        - run: docker build -t adelelfar256/react-test -f ./client/Dockerfile.dev .. .
+        - run: docker run -e CI=true adelelfar256/react-test npm test
         - run: docker build -t adelelfar256/multi-client ./client
         - run: docker build -t adelelfar256/multi-nginx ./nginx
         - run: docker build -t adelelfar256/multi-server ./server
@@ -20,3 +22,4 @@
     elastic-beanstalk-workflow:
       jobs:
         - eb-demo
+
