@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/adelelfar256/multi-docker.git
     targetRevision: HEAD
-    path: complex
+    path: ../
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp
