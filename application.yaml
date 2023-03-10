@@ -8,7 +8,7 @@ spec:
 
   source:
     repoURL: https://github.com/adelelfar256/multi-docker.git
-    targetRevision: HEAD
+    targetRevision: master
     path: ./
   destination:
     server: https://kubernetes.default.svc
