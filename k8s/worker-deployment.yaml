@@ -15,6 +15,3 @@ spec:
       containers:
         - name: worker
           image: adelelfar97/multi-worker
-
-
-# no port because no one need to access the worker!!
