@@ -4,6 +4,7 @@ metadata:
   name: server-cluster-ip-service
 spec:
   type: ClusterIP
+  # allow components server
   selector:
     component: server
   ports:
